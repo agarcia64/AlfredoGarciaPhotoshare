@@ -1,0 +1,25 @@
+
+<html>
+<head>
+    <title>Albums</title>
+</head>
+<body>
+    <form method="post" action="createAlbum">
+        <label>Create an album to add photos!</label></br>
+        <label for="name">Album Name: </label>
+        <input type="text" name="name">
+        <input type="submit" value="Create Album">
+    </form>
+    {% if albumList %}
+    <h2>Albums:</h2>
+        {% for x in albumList %}
+            <li><a href='/openAlbum?albumId={{ x.0 }}'>{{x.1}}</a>
+                <form method="post" action="deleteAlbum">
+                        <input type="submit" value="Delete Album"/>
+                        <input type="hidden" name="albumId" value="{{x.0}}"/>
+                </form>
+            </li>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

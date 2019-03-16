@@ -1,0 +1,11 @@
+<html>
+<body>
+    {% if top10Users %}
+        <p>Top 10 Users</p>
+        {% for x in top10Users %}
+            <p>{{ x }}</p>
+        {% endfor %}
+    {% endif %}
+</body>
+<li><a href='/'>Home</a></li>
+</html>

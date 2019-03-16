@@ -1,0 +1,44 @@
+<html>
+<head>
+    <title>Photos ordered by popular tags</title>
+</head>
+<body>
+	{% if photoList %}
+	<h2>Photos ordered by popular tags</h2>
+        <ul>
+            {% for photo in photoList %}
+            <!--
+                # Grab data from the photo
+                        tempPicId   = tempPhoto[0]
+                        tempAlbumId = tempPhoto[1]
+                        tempUserId  = tempPhoto[2]
+                        tempImgData = tempPhoto[3]
+                        tempCap     = tempPhoto[4]
+                        tags        = 5
+                        likes       = 6
+            -->
+                <li><img src='data:image/png;base64, {{photo.3}}' height = "100" width = "100"/>
+                    <p>Caption : {{ photo.4 }}</p>
+                    <p>Tags : {{ photo.5 }}</p>
+                    <p>Likes :  {{ photo.8 }} : {{ photo.6 }}</p>
+                    <p>Comments : {{ photo.7 }} </p>
+                </li>
+                <form method="post" action="likePicturePopular">
+                    <input type="submit" value="Like Photo"/>
+                    <input type="hidden" name="picture_id" value="{{ photo.0 }}"/>
+                    <input type="hidden" name="albumId" value="{{ photo.1 }}"/>
+                    <input type="hidden" name="tagName" value="{{ tagName }}"/>
+                </form>
+                <form method="post" action="postCommentPopular">
+                    <input type="text" placeholder="Enter Comment" name="commentText">
+                    <input type="submit" value="Post Comment"/>
+                    <input type="hidden" name="picture_id" value="{{ photo.0 }}"/>
+                    <input type="hidden" name="albumId" value="{{ photo.1 }}"/>
+                    <input type="hidden" name="tagName" value="{{ tagName }}"/>
+                </form>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+<li><a href='/'>Home</a></li>
+</html>
